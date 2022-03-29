@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EncryptedGallery</string>
+    <string name="facebook_app_id">273672358298184</string>
+    <string name="fb_login_protocol_scheme">fb273672358298184</string>
+    <string name="facebook_client_token">56789</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="Google_Login">Google Login</string>
+</resources>

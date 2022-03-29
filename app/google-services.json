@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "880039826466",
+    "project_id": "encryptedgallery-f1e2f",
+    "storage_bucket": "encryptedgallery-f1e2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880039826466:android:0acfd440b30fe30a71a67b",
+        "android_client_info": {
+          "package_name": "com.bitdev.encryptedgallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880039826466-f9cuhpbm6rdabh4a5sjrgpccvu72u4im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxjIUQmJzfmNHOsfgwfEOjXfpwsWBLnOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880039826466-f9cuhpbm6rdabh4a5sjrgpccvu72u4im.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

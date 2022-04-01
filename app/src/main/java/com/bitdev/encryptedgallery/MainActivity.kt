@@ -1,5 +1,6 @@
 package com.bitdev.encryptedgallery
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -71,6 +72,20 @@ class MainActivity : AppCompatActivity() {
             }
         })
         // [END initialize_fblogin]
+
+        signupButton.setOnClickListener {
+            startActivity(Intent(applicationContext, SignupActivity::class.java))
+        }
+
+        loginButton.setOnClickListener {
+            auth.signInWithEmailAndPassword(username.text.toString(), password.text.toString())
+                .addOnSuccessListener {
+                    startActivity(Intent(applicationContext, GalleryActivity::class.java))
+                }
+                .addOnFailureListener {
+                    Toast.makeText(applicationContext,it.message,Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     private fun handleFacebookAccessToken(token: AccessToken) {

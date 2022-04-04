@@ -6,13 +6,14 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bitdev.encryptedgallery.activities.GalleryActivity
+import com.bitdev.encryptedgallery.activities.SignupActivity
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.widget.LoginButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FacebookAuthProvider
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         // [START initialize_auth]
         // Initialize Firebase Auth
         auth = Firebase.auth
+        if(auth.currentUser !== null){
+            startActivity(Intent(applicationContext,GalleryActivity::class.java))
+        }
         // [END initialize_auth]
 
         FacebookSdk.sdkInitialize(applicationContext);

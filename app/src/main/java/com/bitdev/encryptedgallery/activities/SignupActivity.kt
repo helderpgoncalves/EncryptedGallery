@@ -1,13 +1,13 @@
-package com.bitdev.encryptedgallery
+package com.bitdev.encryptedgallery.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
+import com.bitdev.encryptedgallery.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -77,7 +77,8 @@ class SignupActivity : AppCompatActivity() {
                         "first_name" to "${firstName.text}",
                         "last_name" to "${lastName.text}",
                         "email" to email,
-                        "password" to password
+                        "password" to password,
+                        "gallery" to listOf<String>()
                     )
 
                     db.collection("users").document(uid).set(user)

@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EncryptedGallery">
         <activity
-            android:name=".GalleryActivity"
+            android:name=".activities.GalleryActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".activities.SignupActivity"
             android:exported="false" />
         <activity
             android:name="com.facebook.FacebookActivity"

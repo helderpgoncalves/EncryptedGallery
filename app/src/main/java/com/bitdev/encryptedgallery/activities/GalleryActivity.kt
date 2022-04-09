@@ -9,8 +9,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bitdev.encryptedgallery.R
 import com.bitdev.encryptedgallery.Utils
+import com.bitdev.encryptedgallery.adapters.GalleryAdapter
 import com.bitdev.encryptedgallery.models.User
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +28,8 @@ class GalleryActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var user: User
+
+    private lateinit var recycler: RecyclerView
 
     private val attachFileResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -48,6 +53,8 @@ class GalleryActivity : AppCompatActivity() {
             finish()
             return
         }
+
+        recycler = findViewById(R.id.gallery_recycler)
 
         db.collection("users").document(auth.currentUser!!.uid).get().addOnSuccessListener {
 
@@ -75,20 +82,23 @@ class GalleryActivity : AppCompatActivity() {
         val storageImages = FirebaseStorage.getInstance().getReference("files")
 
 
-        if(user.gallery.size < 4){
+        if(user.gallery.size < 2){
             var gallery = user.gallery.toMutableList()
-            while(gallery.size < 4) {
+            while(gallery.size < 2) {
                 gallery.add("default.jpg")
             }
             user.gallery = gallery
         }
 
-        val photo1 = findViewById<ImageView>(R.id.gallery_photo_1)
+        recycler.adapter = GalleryAdapter(user.gallery)
+        recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        /*val photo1 = findViewById<ImageView>(R.id.gallery_photo_1)
         val photo2 = findViewById<ImageView>(R.id.gallery_photo_2)
         val photo3 = findViewById<ImageView>(R.id.gallery_photo_3)
         val photo4 = findViewById<ImageView>(R.id.gallery_photo_4)
 
-        storageImages.child("${user.gallery[0]}").downloadUrl.addOnSuccessListener {
+        storageImages.child(user.gallery[0]).downloadUrl.addOnSuccessListener {
           Glide.with(applicationContext).load(it).into(photo1)
         }
 
@@ -102,7 +112,7 @@ class GalleryActivity : AppCompatActivity() {
 
         storageImages.child("${user.gallery[3]}").downloadUrl.addOnSuccessListener {
             Glide.with(applicationContext).load(it).into(photo4)
-        }
+        }*/
 
     }
 
@@ -114,8 +124,11 @@ class GalleryActivity : AppCompatActivity() {
             storageRef.putFile(fileUri).addOnSuccessListener {
                 var gallery = user.gallery.toMutableList()
 
+                gallery.add(filename)
 
-                if(gallery.size < 4){
+
+                // Limit gallery array to 4 photos
+                /*if(gallery.size < 4){
                     gallery.add(filename)
                 }else{
                     for(i in 3 downTo 1){
@@ -124,7 +137,7 @@ class GalleryActivity : AppCompatActivity() {
                     }
 
                     gallery[0] = filename
-                }
+                }*/
 
 
                 db.collection("users").document(user.uid).update("gallery",gallery).addOnSuccessListener {
